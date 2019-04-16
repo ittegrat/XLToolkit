@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <BaseBuildPath>$(SolutionDir)_build_\</BaseBuildPath>
+    <MSBuildProjectExtensionsPath>$(BaseBuildPath)_Extensions_\$(MSBuildProjectName)\</MSBuildProjectExtensionsPath>
+    <OutputPath>$(BaseBuildPath)$(Platform)_$(Configuration)\$(MSBuildProjectName)\</OutputPath>
+    <BaseIntermediateOutputPath>$(OutputPath)obj\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+  </PropertyGroup>
+
+</Project>

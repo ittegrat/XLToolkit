@@ -1,0 +1,3 @@
+<DnaLibrary Name="XLToolkit" Language="CS" RuntimeVersion="v4.0">
+  <ExternalLibrary Path="XLToolkit.dll" Pack="true" />
+</DnaLibrary>
