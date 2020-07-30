@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
@@ -12,8 +11,9 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("XLToolkit")]
-[assembly: AssemblyCopyright("Copyright © 2019 Ittegrat")]
+[assembly: AssemblyCopyright("Copyright © 2019-2020 Ittegrat")]
 [assembly: AssemblyTrademark("")]
 
-[assembly: AssemblyVersion("0.1.0")]
-[assembly: AssemblyFileVersion("0.1.0")]
+[assembly: AssemblyVersion("0.2.0")]
+[assembly: AssemblyFileVersion("0.2.0")]
+[assembly: AssemblyInformationalVersion("0.2.0")]

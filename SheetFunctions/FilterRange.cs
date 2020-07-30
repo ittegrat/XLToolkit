@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using ExcelDna.Integration;
@@ -12,16 +12,16 @@ namespace XLToolkit
     public static object FilterRange(object[,] Range, object[,] Condition, bool NoCheckSize, bool Transpose, bool Ensure2d) {
 
       if (Range.Length == 1 && Range[0, 0] is ExcelMissing)
-        return "#ERR{Invalid input range}";
+        return Strings.ERR("Invalid input range");
 
       if (Condition.Length == 1 && Condition[0, 0] is ExcelMissing)
-        return "#ERR{Invalid condition range}";
+        return Strings.ERR("Invalid condition range");
 
       int cRows = Condition.GetLength(0);
       int cCols = Condition.GetLength(1);
 
       if ((cRows > 1) && (cCols > 1))
-        return "#ERR{Criteria must be a vector}";
+        return Strings.ERR("Criteria must be a vector");
 
       // As it is one-dimensional, Condition determines direction
       bool isRowFilter = cRows > cCols;
@@ -29,7 +29,7 @@ namespace XLToolkit
       int rRows = Range.GetLength(0);
       int rCols = Range.GetLength(1);
 
-      if (isRowFilter ? (rRows != cRows) : (rCols != cCols)) return "#ERR{Incompatible sizes}";
+      if (isRowFilter ? (rRows != cRows) : (rCols != cCols)) return Strings.ERR("Incompatible sizes");
 
       List<int> indices = new List<int>();
 
@@ -46,7 +46,7 @@ namespace XLToolkit
         } else if ((ExcelError)c == ExcelError.ExcelErrorNA)
           continue;
 
-        return $"#COND{{{1 + i}}}";
+        return Strings.ERR($"Condition: {1 + i}");
 
       }
 
@@ -57,7 +57,7 @@ namespace XLToolkit
 
       if (!NoCheckSize) {
 
-        Caller caller = new Caller();
+        var caller = new Caller();
         string msg;
 
         if (caller.TooSmall(isRowFilter == Transpose, nv, out msg)) return msg;

@@ -1,5 +1,3 @@
-﻿using System;
-
 using ExcelDna.Integration;
 using ExcelDna.Integration.Helpers;
 
@@ -11,22 +9,22 @@ namespace XLToolkit
     public static object HCat(object[,] First, object[,] Second, bool NoCheckSize, bool Transpose) {
 
       if (First.Length == 1 && First[0, 0] is ExcelMissing)
-        return "#ERR{Invalid First range}";
+        return Strings.ERR("Invalid First range");
 
       if (Second.Length == 1 && Second[0, 0] is ExcelMissing)
-        return "#ERR{Invalid Second range}";
+        return Strings.ERR("Invalid Second range");
 
       int r = First.GetLength(0);
 
       if (r != Second.GetLength(0))
-        return "#ERR{Incompatible row sizes}";
+        return Strings.ERR("Incompatible row sizes");
 
       int c1 = First.GetLength(1);
       int c = c1 + Second.GetLength(1);
 
       if (!NoCheckSize) {
 
-        Caller caller = new Caller();
+        var caller = new Caller();
         string msg;
 
         if (caller.TooSmall(Transpose, r, out msg)) return msg;
@@ -54,22 +52,22 @@ namespace XLToolkit
     public static object VCat(object[,] First, object[,] Second, bool NoCheckSize, bool Transpose) {
 
       if (First.Length == 1 && First[0, 0] is ExcelMissing)
-        return "#ERR{Invalid First range}";
+        return Strings.ERR("Invalid First range");
 
       if (Second.Length == 1 && Second[0, 0] is ExcelMissing)
-        return "#ERR{Invalid Second range}";
+        return Strings.ERR("Invalid Second range");
 
       int c = First.GetLength(1);
 
       if (c != Second.GetLength(1))
-        return "#ERR{Incompatible column sizes}";
+        return Strings.ERR("Incompatible column sizes");
 
       int r1 = First.GetLength(0);
       int r = r1 + Second.GetLength(0);
 
       if (!NoCheckSize) {
 
-        Caller caller = new Caller();
+        var caller = new Caller();
         string msg;
 
         if (caller.TooSmall(Transpose, r, out msg)) return msg;
