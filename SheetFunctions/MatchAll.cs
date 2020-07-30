@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using ExcelDna.Integration;
 using ExcelDna.Integration.Helpers;
@@ -11,16 +11,16 @@ namespace XLToolkit
     public static object MatchAll(object Value, object[,] Range, bool NoCheckSize, bool Transpose, bool Ensure2d) {
 
       if (Value is ExcelMissing)
-        return "#ERR{Invalid value}";
+        return Strings.ERR("Invalid value");
 
       if (Range.Length == 1 && Range[0, 0] is ExcelMissing)
-        return "#ERR{Invalid lookup range}";
+        return Strings.ERR("Invalid lookup range");
 
       int rRows = Range.GetLength(0);
       int rCols = Range.GetLength(1);
 
       if (rRows > 1 && rCols > 1)
-        return "#ERR{Lookup range must be a vector}";
+        return Strings.ERR("Lookup range must be a vector");
 
       // As it is one-dimensional, Range determines direction
       bool isColumn = rRows > rCols;
@@ -41,7 +41,7 @@ namespace XLToolkit
       if (Transpose) isColumn = !isColumn;
 
       if (!NoCheckSize) {
-        Caller caller = new Caller();
+        var caller = new Caller();
         if (caller.TooSmall(!isColumn, nv, out string msg)) return msg;
       }
 

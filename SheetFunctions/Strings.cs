@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text.RegularExpressions;
 
 using ExcelDna.Integration;
@@ -16,7 +16,7 @@ namespace XLToolkit
       int nv = sa.Length;
 
       if (!NoCheckSize) {
-        Caller caller = new Caller();
+        var caller = new Caller();
         // Default layout is horizontal.
         if (caller.TooSmall(!Transpose, nv, out string msg)) return msg;
       }
@@ -39,7 +39,22 @@ namespace XLToolkit
     }
 
     // RE Quick Reference: https://msdn.microsoft.com/en-us/library/az24scfc.aspx
-    public static object RegMatch(string Text, string Pattern, bool IgnoreCase) {
+    [ExcelFunction(Prefix = "RE.")]
+    public static object IsMatch(string Text, string Pattern, bool IgnoreCase) {
+
+      try {
+
+        Match m = Regex.Match(Text, Pattern, IgnoreCase ? RegexOptions.IgnoreCase : RegexOptions.None);
+        return m.Success;
+
+      }
+      catch (Exception e) {
+        return Strings.ERR(e.Message);
+      }
+
+    }
+    [ExcelFunction(Prefix = "RE.")]
+    public static object Match(string Text, string Pattern, bool IgnoreCase) {
 
       try {
 
@@ -51,17 +66,22 @@ namespace XLToolkit
 
       }
       catch (Exception e) {
-        return $"#ERR{{{e.Message}}}";
+        return Strings.ERR(e.Message);
       }
 
     }
-    public static string RegReplace(string Text, string Pattern, string Replacement, bool IgnoreCase) {
+    [ExcelFunction(Prefix = "RE.")]
+    public static string Replace(string Text, string Pattern, string Replacement, bool IgnoreCase) {
+
       try {
+
         return Regex.Replace(Text, Pattern, Replacement, IgnoreCase ? RegexOptions.IgnoreCase : RegexOptions.None);
+
       }
       catch (Exception e) {
-        return $"#ERR{{{e.Message}}}";
+        return Strings.ERR(e.Message);
       }
+
     }
 
   }
