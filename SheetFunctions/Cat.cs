@@ -25,10 +25,12 @@ namespace XLToolkit
       if (!NoCheckSize) {
 
         var caller = new Caller();
-        string msg;
 
-        if (caller.TooSmall(Transpose, r, out msg)) return msg;
-        if (caller.TooSmall(!Transpose, c, out msg)) return msg;
+        if (caller.Rows * caller.Columns > 1) {
+          string msg;
+          if (caller.TooSmall(Transpose, r, out msg)) return msg;
+          if (caller.TooSmall(!Transpose, c, out msg)) return msg;
+        }
 
       }
 
@@ -68,10 +70,12 @@ namespace XLToolkit
       if (!NoCheckSize) {
 
         var caller = new Caller();
-        string msg;
 
-        if (caller.TooSmall(Transpose, r, out msg)) return msg;
-        if (caller.TooSmall(!Transpose, c, out msg)) return msg;
+        if (caller.Rows * caller.Columns > 1) {
+          string msg;
+          if (caller.TooSmall(Transpose, r, out msg)) return msg;
+          if (caller.TooSmall(!Transpose, c, out msg)) return msg;
+        }
 
       }
 

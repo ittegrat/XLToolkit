@@ -11,9 +11,9 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("XLToolkit")]
-[assembly: AssemblyCopyright("Copyright © 2019-2020 Ittegrat")]
+[assembly: AssemblyCopyright("Copyright © 2019-2021 Ittegrat")]
 [assembly: AssemblyTrademark("")]
 
-[assembly: AssemblyVersion("0.2.0")]
-[assembly: AssemblyFileVersion("0.2.0")]
-[assembly: AssemblyInformationalVersion("0.2.0")]
+[assembly: AssemblyVersion("0.3.0")]
+[assembly: AssemblyFileVersion("0.3.0")]
+[assembly: AssemblyInformationalVersion("0.3.0")]

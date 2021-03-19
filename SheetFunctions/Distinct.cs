@@ -62,7 +62,7 @@ namespace XLToolkit
       if (!NoCheckSize) {
         var caller = new Caller();
         // Default layout is columnar, so Transpose really means horizontal.
-        if (caller.TooSmall(Transpose, nv, out string msg)) return msg;
+        if ((caller.Rows * caller.Columns > 1) && caller.TooSmall(Transpose, nv, out string msg)) return msg;
       }
 
       IEnumerable<object> sorted;

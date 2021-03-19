@@ -92,6 +92,7 @@ namespace XLToolkit
         return Strings.ERR("Column out of range");
 
       var caller = new Caller();
+      var checkSize = !NoCheckSize && (caller.Rows * caller.Columns > 1);
       var empty = IfEmpty is ExcelMissing || IfEmpty is ExcelEmpty
         ? (caller.IsRange ? String.Empty : null)
         : IfEmpty
@@ -107,7 +108,7 @@ namespace XLToolkit
 
         var cc = storable.Columns;
 
-        if (!NoCheckSize) {
+        if (checkSize) {
           if (caller.TooSmall(!Transpose, cc, out string msg)) return msg;
         }
 
@@ -136,7 +137,7 @@ namespace XLToolkit
 
         var rr = storable.Rows;
 
-        if (!NoCheckSize) {
+        if (checkSize) {
           if (caller.TooSmall(Transpose, rr, out string msg)) return msg;
         }
 
@@ -166,7 +167,7 @@ namespace XLToolkit
         var rr = storable.Rows;
         var cc = storable.Columns;
 
-        if (!NoCheckSize) {
+        if (checkSize) {
           if (caller.TooSmall(Transpose, rr, out string msg)) return msg;
           if (caller.TooSmall(!Transpose, cc, out msg)) return msg;
         }

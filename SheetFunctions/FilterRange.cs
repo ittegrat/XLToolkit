@@ -58,10 +58,12 @@ namespace XLToolkit
       if (!NoCheckSize) {
 
         var caller = new Caller();
-        string msg;
 
-        if (caller.TooSmall(isRowFilter == Transpose, nv, out msg)) return msg;
-        if (caller.TooSmall(!(isRowFilter == Transpose), isRowFilter ? rCols : rRows, out msg)) return msg;
+        if (caller.Rows * caller.Columns > 1) {
+          string msg;
+          if (caller.TooSmall(isRowFilter == Transpose, nv, out msg)) return msg;
+          if (caller.TooSmall(!(isRowFilter == Transpose), isRowFilter ? rCols : rRows, out msg)) return msg;
+        }
 
       }
 

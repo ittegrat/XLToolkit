@@ -18,7 +18,7 @@ namespace XLToolkit
       if (!NoCheckSize) {
         var caller = new Caller();
         // Default layout is horizontal.
-        if (caller.TooSmall(!Transpose, nv, out string msg)) return msg;
+        if ((caller.Rows * caller.Columns > 1) && caller.TooSmall(!Transpose, nv, out string msg)) return msg;
       }
 
       if (Ensure2d && nv == 1) ++nv;
